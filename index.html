@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="item">
+                <form class="js-cat-form" role="searchForm">
+                    <h1> Welcome to the cat app!!</h1>
+                    <p>Enter a breed to display a cute cat pictures.</p>
+                    <label for="breed-of-cats">Enter cat breed here :</label>
+                    <input class="breed-of-cats" type="text" value="cute" required>
+                    <button type="submit">Show Me!</button>
+                </form>
+            </div>
+            <div class="container">
+                <div class="hidden-div" hidden>
+                    <h2>Check out this cute pup!</h2>
+                    <div class="cat-images-results"> 
+                                             
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
