@@ -1,25 +1,67 @@
-  
-* {
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Geneva', sans-serif;
-  }
-  
-  .container {
-    max-width: 400px;
-    margin: 0 auto;
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+body {
+    background-image: linear-gradient(to right top, #22e9ea, #77eef4, #a9f2fb, #d2f7fd, #f7fbfc);
+    font-family: 'Lobster', cursive;
+}
+
+#img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border: solid 2px silver;
+    padding: 1%;
+}
+
+#catlist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    margin-top: 4%;
+    row-gap: 38px;
+}
+
+.cat {
+    margin: 2%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#button {
     text-align: center;
-  }
-  
-  .hidden {
-    display: none;
-  }
+    margin-top: 2%;
+}
 
-  input {
-        text-align: center;
+.popup {
+    cursor: pointer;
+    user-select: none;
+}
+
+.popup .popuptext {
+    visibility: hidden;
+    left: 100%;
+    margin-left: -17px;
+}
+
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 5s;
+    animation: fadeIn 5s;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
     }
+    to {
+        opacity: 0;
+    }
+}
 
- 
-  
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}  
