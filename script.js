@@ -1,46 +1,62 @@
+fetch("https://cataas.com/api/cats")
+    .then(data => data.json())
+    .then(cats => load(cats));
 
-'use strict';
-
-
-//this function fetches three cat photos when called 
-function watchForm() {
-    $('.js-cat-form').submit(event => {
-        event.preventDefault();
-        //this is the user input
-        let submissions = $('.breed-of-cats').val();
-        submissions = submissions.toLowerCase();
-        //this make the image section visible        
-        getThecat(submissions)
-    });
-};
-
-//This function calls the endpoint url and fetches the image from the API
-function getThecat(submissions) {
-    fetch(`https://cataas.com/api/cats?tags=cute`)
-        .then(response => {
-            if (response.ok) {
-                return response.json()                
-            }
-            throw new Error(response.statusText);
-        })
-        .then(cat => displayResults(tags))
-        .catch(error => alert('Sorry! Breed not found, please try again later.'));
-};
-
-
-//This function displays the image to the DOM
-function displayResults(tags) {
-    
-    $('.cat-images-results').html(`<img src="${tags.message}" alt="picutre of a cat" class="cat images">`);
-    
-    $('.hidden-div').removeAttr('hidden');
-    
-    console.log(tags)
-};
-
-
-function all(){
-    $(watchForm);
+function load(cats) {
+    var catlist = document.createElement("div");
+    catlist.className = "container"
+    catlist.id = "catlist"
+    cats.forEach((cat) => {
+        var a = document.createElement('div');
+        a.innerHTML = `
+    <img src="https://cataas.com/cat/${cat.id}" style="height:100px;width:100px;object-fit:cover"></img><br><br>
+    <div style="text-align:left;color:gray">Created on:${new Date(cat.created_at).toDateString()}</div>
+               <div style="text-align:left;color:gray">Tags:${cat.tags}</div>
+            
+    `
+        catlist.append(a);
+    })
+    document.body.append(catlist);
 }
 
-$(all)
+function search() {
+    document.querySelector("#catlist").remove();
+    const s = document.querySelector(".x").value;
+    console.log("searching");
+
+    fetch(`https://cataas.com/api/cats?tags=${s}`, {
+            method: "GET"
+        })
+        .then(data => data.json())
+        .then(users => load(users));
+
+    function load(users) {
+        var catlist = document.createElement("div");
+        catlist.className = "container"
+        catlist.id = "catlist"
+        users.forEach((cat) => {
+            var a = document.createElement("div");
+            a.id = 'cat';
+            a.innerHTML = `
+            <div class="popup" onclick="myFunction()"><input type="image" class="popup" id="img" src="https://cataas.com/cat/${cat.id}"> 
+            <span class="popuptext" id="myPopup"><img src="https://cataas.com/cat/${cat.id}" style="width:150px;height:150px;border-radius:50%"></span><div>
+            <div>
+               <div>Created on:${new Date(cat.created_at).toDateString()}</div>
+               <div>Tags:${cat.tags}</div>
+            </div>`
+
+
+            console.log(a);
+            catlist.append(a);
+        })
+        document.body.append(catlist);
+    }
+
+}
+
+function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.id = "f";
+    popup.classList.toggle("show");
+}
+
